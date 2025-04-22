@@ -1,0 +1,76 @@
+<!--
+Directory structure (GitHub Pages):
+
+petexpointernational.github.io/
+├── index.html
+├── styles.css
+└── .github/
+    └── workflows/
+        └── deploy.yml
+-->
+
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Middle East Pet Association</title>
+  <link href="styles.css" rel="stylesheet" />
+</head>
+<body class="min-h-screen bg-gray-50 flex flex-col items-center p-4">
+  <header class="w-full max-w-2xl text-center my-8">
+    <h1 class="text-4xl font-bold text-gray-800">Middle East Pet Association (MEPA)</h1>
+    <p class="mt-2 text-gray-600">Uniting pet lovers & advocates across the region 🐾</p>
+  </header>
+
+  <main class="w-full max-w-xl text-center space-y-6">
+    <p class="text-lg text-gray-700">Support our mission:</p>
+    <!-- Ko-fi Button -->
+    <a href="https://ko-fi.com/MEPA" target="_blank" class="inline-block">
+      <img height="60" style="border:0px;height:60px;" src="https://cdn.ko-fi.com/cdn/kofi5.png" alt="Buy Me a Coffee at ko-fi.com" />
+    </a>
+
+    <section class="text-left">
+      <h2 class="text-2xl font-semibold text-gray-800">About MEPA</h2>
+      <p class="mt-2 text-gray-700">
+        The Middle East Pet Association is a community-driven nonprofit aiming to:
+        <ul class="list-disc ml-5 mt-2">
+          <li>Advocate for pet-friendly policies</li>
+          <li>Create educational resources in Arabic & English</li>
+          <li>Connect shelters, vets & volunteers regionally</li>
+        </ul>
+      </p>
+    </section>
+
+    <footer class="mt-12 text-gray-500 text-sm">
+      © 2025 MEPA. Hosted on GitHub Pages.
+    </footer>
+  </main>
+</body>
+</html>
+
+<!-- styles.css (tailwind via CDN is loaded in index.html)
+   You can add custom CSS here if needed. -->
+
+/* (empty for now) */
+
+<!-- .github/workflows/deploy.yml -->
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./
+          publish_branch: gh-pages
